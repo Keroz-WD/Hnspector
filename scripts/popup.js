@@ -2,20 +2,39 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("startButton");
-
-  function display_h1(h1) {
-    document.getElementById("h1").innerHTML = h1;
-  }
+  const highlightButton = document.getElementById("highlightButton");
+  const pageTitle = document.getElementById("pageTitle");
 
   startButton.addEventListener("click", () => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, { data: "hello" }, (response) => {
-        if (response) {
-          console.log(response);
-        } else {
-          // Catch error
+      chrome.tabs.sendMessage(
+        tabs[0].id,
+        { request: "getList" },
+        (response) => {
+          if (response) {
+            console.log(response);
+            displayPageTitle(response[0].title);
+          } else {
+            // Catch error
+          }
         }
-      });
+      );
     });
   });
+
+  // Send request to highlight all the Hn in DOM
+  highlightButton.addEventListener("click", () => {
+    sendToContent({ request: "highlight" });
+  });
+
+  const sendToContent = (request) => {
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+      chrome.tabs.sendMessage(tabs[0].id, request);
+    });
+  };
+
+  // Display page title
+  const displayPageTitle = (title) => {
+    pageTitle.textContent = title;
+  };
 });

@@ -1,36 +1,43 @@
 "use strict";
 
-console.log("Test content.js : OK");
+console.log("Content.js : OK");
 
-const titlesList = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+const hnNodeList = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
 
-// const displayTitles = () => {
-//   titlesList.forEach((node) => {
-//     console.log(node.nodeName);
-//     console.log(node.textContent);
-//   });
-// };
+let dataList = [];
 
-const list = () => {
-  const obj = {};
+// Formats data to be sent to popup
+const createDataList = (titles) => {
+  dataList.push({ title: document.title });
+  class HnData {
+    constructor(tag, content) {
+      this.tag = tag;
+      this.content = content;
+    }
+  }
+  let hnList = [];
+  titles.forEach((element) => {
+    hnList.push(new HnData(element.nodeName, element.textContent));
+  });
+  dataList.push(hnList);
 };
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
-  sendResponse(titlesList);
-  console.log(titlesList);
-  highlightTitles(titlesList);
-  getTitlesContent(titlesList);
-});
-
-// Set titles' background in yellow
+// Highlight all Hn tags by changing their background color to yellow
 const highlightTitles = (titles) => {
   titles.forEach((element) => {
     element.style.backgroundColor = "yellow";
   });
 };
 
-const getTitlesContent = (titles) => {
-  titles.forEach((element) => {
-    console.log(element.textContent);
-  });
-};
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
+  createDataList(hnNodeList);
+
+  switch (message.request) {
+    case "getList":
+      sendResponse(dataList);
+      break;
+    case "highlight":
+      highlightTitles(hnNodeList);
+      break;
+  }
+});
