@@ -5,40 +5,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const highlightButton = document.getElementById("highlightButton");
   const pageTitle = document.getElementById("pageTitle");
 
-  startButton.addEventListener("click", () => {
+  // Send requests to content.js and receive responses
+  const sendToContent = (request) => {
     chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(
-        tabs[0].id,
-        { request: "getList" },
-        (response) => {
-          if (response) {
-            console.log(response);
-            displayPageTitle(response[0].title);
-          } else {
-            // Catch error
-          }
+      chrome.tabs.sendMessage(tabs[0].id, request, (response) => {
+        if (response) {
+          manageResponse(response);
+        } else {
+          // Catch error
         }
-      );
+      });
     });
+  };
+
+  // Manage responses from content.js
+  const manageResponse = (response) => {
+    const actions = {
+      dataList: displayData(response),
+    };
+    return actions[response];
+  };
+
+  startButton.addEventListener("click", () => {
+    sendToContent({ request: "getList" });
   });
 
-  // Send request to highlight all the Hn in DOM
+  // Send request to highlight all Hn in DOM
   highlightButton.addEventListener("click", () => {
     sendToContent({ request: "highlight" });
   });
 
-  const sendToContent = (request) => {
-    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-      chrome.tabs.sendMessage(tabs[0].id, request);
-    });
+  const displayData = (dataList) => {
+    console.log(dataList);
+    displayPageTitle(dataList[0]);
+    displayHnTitles(dataList[1]);
   };
 
-  // Display page title
-  const displayPageTitle = (title) => {
-    pageTitle.textContent = title;
+  const displayPageTitle = (data) => {
+    pageTitle.textContent = data.title;
   };
 
-  const displayHnTitles = (titles) => {
+  const displayHnTitles = (data) => {
     console.log("Hn titles");
   };
 });
