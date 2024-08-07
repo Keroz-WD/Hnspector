@@ -37,4 +37,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const displayPageTitle = (title) => {
     pageTitle.textContent = title;
   };
+
+  const displayHnTitles = (titles) => {
+    console.log("Hn titles");
+  };
 });
