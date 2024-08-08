@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", () => {
   const startButton = document.getElementById("startButton");
   const highlightButton = document.getElementById("highlightButton");
+  const pageURL = document.getElementById("pageURL");
   const pageTitle = document.getElementById("pageTitle");
 
   // Send requests to content.js and receive responses
@@ -37,11 +38,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const displayData = (dataList) => {
     console.log(dataList);
-    displayPageTitle(dataList[0]);
+    displayPageInfo(dataList[0]);
     displayHnTitles(dataList[1]);
   };
 
-  const displayPageTitle = (data) => {
+  const displayPageInfo = (data) => {
+    pageURL.textContent = data.url;
     pageTitle.textContent = data.title;
   };
 

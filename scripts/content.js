@@ -8,17 +8,21 @@ let dataList = [];
 
 // Formats data to be sent to popup
 const createDataList = (titles) => {
-  dataList.push({ title: document.title });
+  dataList.push({ url: document.URL, title: document.title });
+
   class HnData {
     constructor(tag, content) {
       this.tag = tag;
       this.content = content;
     }
   }
+
   let hnList = [];
+
   titles.forEach((element) => {
     hnList.push(new HnData(element.nodeName, element.textContent));
   });
+
   dataList.push(hnList);
 };
 
