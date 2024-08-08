@@ -8,7 +8,14 @@ let dataList = [];
 
 // Formats data to be sent to popup
 const createDataList = (titles) => {
-  dataList.push({ url: document.URL, title: document.title });
+  const metaDescription = document
+    .querySelector("meta[name='description']")
+    .getAttribute("content");
+  dataList.push({
+    url: document.URL,
+    title: document.title,
+    description: metaDescription,
+  });
 
   class HnData {
     constructor(tag, content) {

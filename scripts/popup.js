@@ -39,14 +39,16 @@ const displayData = (dataList) => {
   displayHnTitles(dataList[1]);
 };
 
-const displayPageInfo = (data) => {
+const displayPageInfo = (pageInfo) => {
   const pageURL = document.getElementById("pageURL");
   const pageTitle = document.getElementById("pageTitle");
   const pageTitleCharacters = document.getElementById("pageTitleCharacters");
+  const pageDescription = document.getElementById("pageDescription");
 
-  pageURL.textContent = data.url;
-  pageTitle.textContent = data.title;
-  pageTitleCharacters.textContent = data.title.length + " characters.";
+  pageURL.textContent = pageInfo.url;
+  pageTitle.textContent = pageInfo.title;
+  pageTitleCharacters.textContent = pageInfo.title.length + " characters.";
+  pageDescription.textContent = pageInfo.description;
 };
 
 const displayHnTitles = (data) => {
