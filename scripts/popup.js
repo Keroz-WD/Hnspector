@@ -36,21 +36,29 @@ const manageResponse = (response) => {
 const displayData = (dataList) => {
   console.log(dataList);
   displayPageInfo(dataList[0]);
-  displayHnTitles(dataList[1]);
+  displayHnStructure(dataList[1]);
 };
 
 const displayPageInfo = (pageInfo) => {
-  const pageURL = document.getElementById("pageURL");
   const pageTitle = document.getElementById("pageTitle");
   const pageTitleCharacters = document.getElementById("pageTitleCharacters");
   const pageDescription = document.getElementById("pageDescription");
 
-  pageURL.textContent = pageInfo.url;
   pageTitle.textContent = pageInfo.title;
   pageTitleCharacters.textContent = pageInfo.title.length + " characters.";
   pageDescription.textContent = pageInfo.description;
 };
 
-const displayHnTitles = (data) => {
-  console.log("Hn titles");
+const displayHnStructure = (data) => {
+  displaySummary(data);
+};
+
+const displaySummary = (data) => {
+  // Count amount of each Hn tag
+  const getHnTotal = (i) => data.filter((e) => e.tag === "H" + i).length;
+
+  for (let i = 1; i <= 6; i++) {
+    document.getElementById("totalH" + i).textContent = getHnTotal(i);
+  }
+  document.getElementById("totalHn").textContent = data.length;
 };

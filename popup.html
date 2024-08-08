@@ -11,19 +11,55 @@
 
 <body>
   <h1>Hnspector</h1>
+
   <button type="button" id="highlightButton">Highlight Hn</button>
+
   <div id="pageInfoBox">
     <h2>Page info</h2>
-    <h3>URL</h3>
-    <p id="pageURL">Error: cannot get page's URL.</p>
     <h3>Title</h3>
     <p id="pageTitle">Page title is missing!</p>
     <p id="pageTitleCharacters">0 characters</p>
-    <h3>Description</h3>
+    <h3>Meta description</h3>
     <p id="pageDescription">No metadescription found.</p>
   </div>
-  <h2>Hn tags structure</h2>
-  <p id="h1">H1 is missing!</p>
+
+  <div id="pageTilesBox">
+    <h2>Hn tags structure</h2>
+    <h3>Summary</h3>
+    <div id="hnSummary">
+
+
+    </div>
+    <div id="hnListBox">
+      <table>
+        <thead>
+          <tr>
+            <th>H1</th>
+            <th>H2</th>
+            <th>H3</th>
+            <th>H4</th>
+            <th>H5</th>
+            <th>H6</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th id="totalH1"></th>
+            <th id="totalH2"></th>
+            <th id="totalH3"></th>
+            <th id="totalH4"></th>
+            <th id="totalH5"></th>
+            <th id="totalH6"></th>
+            <th id="totalHn"></th>
+          </tr>
+        </tbody>
+      </table>
+
+      <p id="h1">H1 is missing!</p>
+    </div>
+  </div>
+
 </body>
 
 </html>
