@@ -37,7 +37,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   createDataList(hnNodeList);
 
   switch (message.request) {
-    case "getList":
+    case "getData":
       sendResponse(dataList);
       break;
     case "highlight":
