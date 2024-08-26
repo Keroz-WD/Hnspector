@@ -1,20 +1,20 @@
 @font-face {
-  font-family: Noto Sans;
+  font-family: Inter;
   font-style: normal;
   font-weight: 400;
-  src: url(chrome-extension://pedafehbhogfhapneoajihlnipkfdjmh/fonts/NotoSans-Regular.ttf)
+  src: url(chrome-extension://pedafehbhogfhapneoajihlnipkfdjmh/fonts/Inter-Regular.ttf)
 }
 
 @font-face {
-  font-family: Noto Sans;
+  font-family: Inter;
   font-style: normal;
   font-weight: 600;
-  src: url(chrome-extension://pedafehbhogfhapneoajihlnipkfdjmh/fonts/NotoSans-SemiBold.ttf)
+  src: url(chrome-extension://pedafehbhogfhapneoajihlnipkfdjmh/fonts/Inter-SemiBold.ttf)
 }
 
 @font-face {
-  font-family: Noto Sans;
+  font-family: Inter;
   font-style: italic;
   font-weight: 400;
-  src: url(chrome-extension://pedafehbhogfhapneoajihlnipkfdjmh/fonts/NotoSans-Italic.ttf)
+  src: url(chrome-extension://pedafehbhogfhapneoajihlnipkfdjmh/fonts/Inter-Italic.ttf)
 }

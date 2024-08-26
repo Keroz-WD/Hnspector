@@ -51,14 +51,22 @@ const displayPageInfo = (pageInfo) => {
 
 const displayHnStructure = (data) => {
   displaySummary(data);
+  displayHeaders(data);
 };
 
+// Count amount of each headers
 const displaySummary = (data) => {
-  // Count amount of each Hn tag
   const getHnTotal = (i) => data.filter((e) => e.tag === "H" + i).length;
 
   for (let i = 1; i <= 6; i++) {
     document.getElementById("totalH" + i).textContent = getHnTotal(i);
   }
   document.getElementById("totalHn").textContent = data.length;
+};
+
+// Display headers list in order of apparence in page html
+const displayHeaders = (data) => {
+  console.log("Display headers");
+  console.log(data);
+  data.map((header) => console.log(header.content));
 };

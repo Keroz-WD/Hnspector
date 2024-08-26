@@ -10,7 +10,34 @@
 </head>
 
 <body>
-  <h1>Hnspector</h1>
+  <div class="box settings">
+    <div>
+      <label class="toggle">
+        <div class="switch">
+          <input type="checkbox" id="toggle-highlight">
+          <span class="slider round"></span>
+        </div>
+        Highlight headers
+      </label>
+
+    </div>
+    <div>
+      <label class="toggle">
+        <div class="switch">
+          <input type="checkbox" id="toggle-contrast">
+          <span class="slider round"></span>
+        </div>
+        Contrast content
+      </label>
+    </div>
+  </div>
+
+
+  <div class="box headers"></div>
+
+
+
+  <div class="box summary"></div>
 
   <button type="button" id="highlightButton">Highlight Hn</button>
 
@@ -56,7 +83,7 @@
         </tbody>
       </table>
 
-      <p id="h1">H1 is missing!</p>
+
     </div>
   </div>
 
