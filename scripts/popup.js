@@ -61,7 +61,7 @@ const displaySummary = (data) => {
   for (let i = 1; i <= 6; i++) {
     document.getElementById("totalH" + i).textContent = getHnTotal(i);
   }
-  document.getElementById("hnTotal").textContent = data.length;
+  document.getElementById("totalHn").textContent = data.length;
 };
 
 // Display headers list in order of apparence in page html
