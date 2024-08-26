@@ -33,6 +33,14 @@ body {
   gap: 8px;
 }
 
+h2 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--mid-grey);
+  text-transform: uppercase;
+  user-select: none;
+}
+
 .box {
   background-color: var(--box-bg);
   padding: 12px 8px;
@@ -43,6 +51,68 @@ body {
 .settings {
   flex-direction: row;
   gap: 24px;
+}
+
+.headers .row {
+  display: flex;
+}
+
+.headers .pagetitle {
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.summary {
+  gap: 12px;
+}
+
+.hn-box {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  color: var(--box-bg);
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 4px;
+  user-select: none;
+}
+
+.hn-sum {
+  text-align: center;
+}
+
+.total-box {
+  margin-left: 12px;
+}
+
+.total-box .hn-box {
+  color: var(--dark-grey);
+}
+
+.h1-box {
+  background-color: var(--h1);
+}
+
+.h2-box {
+  background-color: var(--h2);
+}
+
+.h3-box {
+  background-color: var(--h3);
+}
+
+.h4-box {
+  background-color: var(--h4);
+}
+
+.h5-box {
+  background-color: var(--h5);
+}
+
+.h6-box {
+  background-color: var(--h6);
 }
 
 /* Toggle buttons */

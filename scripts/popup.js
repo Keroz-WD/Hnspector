@@ -41,12 +41,12 @@ const displayData = (dataList) => {
 
 const displayPageInfo = (pageInfo) => {
   const pageTitle = document.getElementById("pageTitle");
-  const pageTitleCharacters = document.getElementById("pageTitleCharacters");
-  const pageDescription = document.getElementById("pageDescription");
+  // const pageTitleCharacters = document.getElementById("pageTitleCharacters");
+  // const pageDescription = document.getElementById("pageDescription");
 
   pageTitle.textContent = pageInfo.title;
-  pageTitleCharacters.textContent = pageInfo.title.length + " characters.";
-  pageDescription.textContent = pageInfo.description;
+  // pageTitleCharacters.textContent = pageInfo.title.length + " characters.";
+  // pageDescription.textContent = pageInfo.description;
 };
 
 const displayHnStructure = (data) => {
@@ -61,7 +61,7 @@ const displaySummary = (data) => {
   for (let i = 1; i <= 6; i++) {
     document.getElementById("totalH" + i).textContent = getHnTotal(i);
   }
-  document.getElementById("totalHn").textContent = data.length;
+  document.getElementById("hnTotal").textContent = data.length;
 };
 
 // Display headers list in order of apparence in page html
