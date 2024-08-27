@@ -53,13 +53,36 @@ h2 {
   gap: 24px;
 }
 
+.headers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
 .headers .row {
   display: flex;
+  align-items: center;
+  min-height: 24px;
+  width: 100%;
+  gap: 4px;
 }
 
 .headers .pagetitle {
   gap: 4px;
   margin-bottom: 4px;
+}
+
+.headerBox {
+  padding: 0 8px;
+}
+
+/* .headerBox:hover {
+  color: var(--body-bg);
+} */
+
+.empty-tag {
+  color: var(--light-grey);
+  font-style: italic;
 }
 
 .summary {

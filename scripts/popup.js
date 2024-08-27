@@ -36,22 +36,45 @@ const manageResponse = (response) => {
 const displayData = (dataList) => {
   console.log(dataList);
   displayPageInfo(dataList[0]);
-  displayHnStructure(dataList[1]);
+  displayHeaders(dataList[1]);
+  displaySummary(dataList[1]);
 };
 
+// Display page title
 const displayPageInfo = (pageInfo) => {
-  const pageTitle = document.getElementById("pageTitle");
-  // const pageTitleCharacters = document.getElementById("pageTitleCharacters");
-  // const pageDescription = document.getElementById("pageDescription");
-
-  pageTitle.textContent = pageInfo.title;
-  // pageTitleCharacters.textContent = pageInfo.title.length + " characters.";
-  // pageDescription.textContent = pageInfo.description;
+  document.getElementById("pageTitle").textContent = pageInfo.title;
 };
 
-const displayHnStructure = (data) => {
-  displaySummary(data);
-  displayHeaders(data);
+// Display headers list in order of apparence in page html
+const displayHeaders = (data) => {
+  const headersList = document.getElementById("headersList");
+
+  console.log(data);
+
+  data.map((header) => {
+    const row = document.createElement("div");
+    const hnBox = document.createElement("div");
+    const headerBox = document.createElement("div");
+
+    row.classList.add("row");
+    hnBox.classList.add("hn-box");
+    headerBox.classList.add("headerBox");
+
+    hnBox.textContent = header.tag;
+    hnBox.classList.add(`${header.tag.toLowerCase()}-box`);
+
+    row.appendChild(hnBox);
+    row.appendChild(headerBox);
+
+    if (header.content != "") {
+      headerBox.textContent = header.content;
+    } else {
+      headerBox.textContent = "< empty tag >";
+      headerBox.classList.add("empty-tag");
+    }
+
+    headersList.appendChild(row);
+  });
 };
 
 // Count amount of each headers
@@ -62,11 +85,4 @@ const displaySummary = (data) => {
     document.getElementById("totalH" + i).textContent = getHnTotal(i);
   }
   document.getElementById("totalHn").textContent = data.length;
-};
-
-// Display headers list in order of apparence in page html
-const displayHeaders = (data) => {
-  console.log("Display headers");
-  console.log(data);
-  data.map((header) => console.log(header.content));
 };
