@@ -49,19 +49,36 @@ const displayPageInfo = (pageInfo) => {
 const displayHeaders = (data) => {
   const headersList = document.getElementById("headersList");
 
+  let previousHn = 0;
+
   console.log(data);
 
   data.map((header) => {
     const row = document.createElement("div");
+    const indentation = document.createElement("div");
     const hnBox = document.createElement("div");
     const headerBox = document.createElement("div");
 
     row.classList.add("row");
+    indentation.classList.add("indentation");
     hnBox.classList.add("hn-box");
     headerBox.classList.add("headerBox");
 
     hnBox.textContent = header.tag;
     hnBox.classList.add(`${header.tag.toLowerCase()}-box`);
+
+    row.appendChild(indentation);
+
+    // Dots indentation
+    for (let i = 1; i < +header.tag[1]; i++) {
+      const dotSpacer = document.createElement("div");
+      dotSpacer.classList.add("dot-spacer");
+      console.log(`i = ${i} -- prevHN = ${previousHn}`);
+      if (i - previousHn > 0) {
+        dotSpacer.classList.add("warning");
+      }
+      indentation.appendChild(dotSpacer);
+    }
 
     row.appendChild(hnBox);
     row.appendChild(headerBox);
@@ -74,6 +91,7 @@ const displayHeaders = (data) => {
     }
 
     headersList.appendChild(row);
+    previousHn = +header.tag[1];
   });
 };
 

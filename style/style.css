@@ -5,6 +5,7 @@
   --dark-grey: #191919;
   --mid-grey: #676767;
   --light-grey: #D2D2D2;
+  --warning: #DF4B1C;
   --h1: #373038;
   --h2: #DF8600;
   --h3: #07873B;
@@ -61,10 +62,8 @@ h2 {
 
 .headers .row {
   display: flex;
-  align-items: center;
   min-height: 24px;
   width: 100%;
-  gap: 4px;
 }
 
 .headers .pagetitle {
@@ -74,6 +73,8 @@ h2 {
 
 .headerBox {
   padding: 0 8px;
+  display: flex;
+  align-items: center;
 }
 
 /* .headerBox:hover {
@@ -83,6 +84,23 @@ h2 {
 .empty-tag {
   color: var(--light-grey);
   font-style: italic;
+  user-select: none;
+}
+
+.indentation {
+  display: flex;
+}
+
+.dot-spacer {
+  width: 4px;
+  height: 4px;
+  border-radius: 4px;
+  background-color: var(--light-grey);
+  margin: 10px 8px 10px 0;
+}
+
+.warning {
+  background-color: var(--warning);
 }
 
 .summary {
