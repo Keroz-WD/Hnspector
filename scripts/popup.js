@@ -1,13 +1,27 @@
 "use strict";
 
 document.addEventListener("DOMContentLoaded", () => {
-  const highlightButton = document.getElementById("highlightButton");
+  const highlightToggle = document.getElementById("highlightToggle");
+  const contrastToggle = document.getElementById("contrastToggle");
 
   sendToContent({ request: "getData" });
 
-  // Send request to highlight all Hn in DOM
-  highlightButton.addEventListener("click", () => {
-    sendToContent({ request: "highlight" });
+  // Send request to highlight all headers in DOM
+  highlightToggle.addEventListener("change", () => {
+    if (highlightToggle.checked) {
+      sendToContent({ request: "highlightOn" });
+    } else {
+      sendToContent({ request: "highlightOff" });
+    }
+  });
+
+  // Contrast titles with the rest of the content
+  contrastToggle.addEventListener("change", () => {
+    if (contrastToggle.checked) {
+      sendToContent({ request: "contrastOn" });
+    } else {
+      sendToContent({ request: "contrastOff" });
+    }
   });
 });
 
@@ -51,8 +65,6 @@ const displayHeaders = (data) => {
 
   let previousHn = 0;
 
-  console.log(data);
-
   data.map((header) => {
     const row = document.createElement("div");
     const indentation = document.createElement("div");
@@ -73,7 +85,7 @@ const displayHeaders = (data) => {
     for (let i = 1; i < +header.tag[1]; i++) {
       const dotSpacer = document.createElement("div");
       dotSpacer.classList.add("dot-spacer");
-      console.log(`i = ${i} -- prevHN = ${previousHn}`);
+      // Alert if the gap is > 1 with previous header
       if (i - previousHn > 0) {
         dotSpacer.classList.add("warning");
       }
@@ -86,7 +98,7 @@ const displayHeaders = (data) => {
     if (header.content != "") {
       headerBox.textContent = header.content;
     } else {
-      headerBox.textContent = "< empty tag >";
+      headerBox.textContent = "<empty tag>";
       headerBox.classList.add("empty-tag");
     }
 
