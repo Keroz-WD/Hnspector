@@ -1,0 +1,46 @@
+:root {
+  --hns-h1: #373038;
+  --hns-h2: #DF8600;
+  --hns-h3: #07873B;
+  --hns-h4: #164192;
+  --hns-h5: #6D3599;
+  --hns-h6: #EF637F;
+}
+
+.hns-header {
+  box-shadow: inset 0px 0px 0px 2px rgb(0, 0, 0);
+}
+
+.hns-H1 {
+  background-color: var(--hns-h1) !important;
+  color: white !important;
+}
+
+.hns-H2 {
+  background-color: var(--hns-h2) !important;
+  color: white !important;
+}
+
+.hns-H3 {
+  background-color: var(--hns-h3) !important;
+  color: white !important;
+}
+
+.hns-H4 {
+  background-color: var(--hns-h4) !important;
+  color: white !important;
+}
+
+.hns-H5 {
+  background-color: var(--hns-h5) !important;
+  color: white !important;
+}
+
+.hns-H6 {
+  background-color: var(--hns-h6) !important;
+  color: white !important;
+}
+
+.hns-contrast {
+  opacity: 0.5;
+}

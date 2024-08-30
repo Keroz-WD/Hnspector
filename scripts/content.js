@@ -34,9 +34,16 @@ const createDataList = (titles) => {
 };
 
 // Highlight all Hn tags by changing their background color to yellow
-const highlightHeaders = (titles) => {
+const highlightHeaders = (titles, isActive) => {
   titles.forEach((element) => {
-    element.style.backgroundColor = "yellow";
+    console.log(element.tagName);
+    if (isActive) {
+      element.classList.add("hns-header");
+      element.classList.add(`hns-${element.tagName}`);
+    } else {
+      element.classList.remove("hns-header");
+      element.classList.remove(`hns-${element.tagName}`);
+    }
   });
 };
 
@@ -56,12 +63,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       sendResponse(dataList);
       break;
     case "highlightOn":
-      highlightHeaders(hnNodeList);
+      highlightHeaders(hnNodeList, true);
       console.log("highlight on");
       break;
     case "highlightOff":
       // Remove highlights
       console.log("highlight off");
+      highlightHeaders(hnNodeList, false);
       break;
     case "contrastOn":
       // Contrast content
