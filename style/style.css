@@ -72,7 +72,7 @@ h2 {
 }
 
 .headerBox {
-  padding: 0 8px;
+  padding: 0 8px 0 4px;
   display: flex;
   align-items: center;
   width: 100%;
@@ -83,32 +83,32 @@ h2 {
 
 .hb-H1:hover {
   background-color: var(--h1);
-  color: var(--body-bg);
+  color: var(--box-bg);
 }
 
 .hb-H2:hover {
   background-color: var(--h2);
-  color: var(--body-bg);
+  color: var(--box-bg);
 }
 
 .hb-H3:hover {
   background-color: var(--h3);
-  color: var(--body-bg);
+  color: var(--box-bg);
 }
 
 .hb-H4:hover {
   background-color: var(--h4);
-  color: var(--body-bg);
+  color: var(--box-bg);
 }
 
 .hb-H5:hover {
   background-color: var(--h5);
-  color: var(--body-bg);
+  color: var(--box-bg);
 }
 
 .hb-H6:hover {
   background-color: var(--h6);
-  color: var(--body-bg);
+  color: var(--box-bg);
 }
 
 .empty-tag {
@@ -138,19 +138,19 @@ h2 {
 }
 
 .hn-box {
-  width: 24px;
-  height: 24px;
+  min-width: 24px;
+  min-height: 24px;
   border-radius: 4px;
   color: var(--box-bg);
   font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: 4px;
   user-select: none;
 }
 
 .hn-sum {
+  margin-top: 4px;
   text-align: center;
 }
 
