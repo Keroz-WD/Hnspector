@@ -7,13 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   sendToContent({ request: "getData" });
 
   // Send request to highlight all headers in DOM
-  highlightToggle.addEventListener("change", () => {
-    if (highlightToggle.checked) {
-      sendToContent({ request: "highlightOn" });
-    } else {
-      sendToContent({ request: "highlightOff" });
-    }
-  });
+  highlightToggle.addEventListener("change", () =>
+    sendToContent({ request: "highlight" })
+  );
 
   // Contrast titles with the rest of the content
   contrastToggle.addEventListener("change", () => {
@@ -94,6 +90,12 @@ const displayHeaders = (data) => {
 
     row.appendChild(hnBox);
     row.appendChild(headerBox);
+
+    headerBox.classList.add(`hb-${header.tag}`);
+
+    headerBox.addEventListener("click", (e) => {
+      console.log(e.target);
+    });
 
     if (header.content != "") {
       headerBox.textContent = header.content;
