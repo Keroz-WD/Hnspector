@@ -61,7 +61,7 @@ const displayHeaders = (data) => {
 
   let previousHn = 0;
 
-  data.map((header) => {
+  data.map((header, index) => {
     const row = document.createElement("div");
     const indentation = document.createElement("div");
     const hnBox = document.createElement("div");
@@ -92,9 +92,13 @@ const displayHeaders = (data) => {
     row.appendChild(headerBox);
 
     headerBox.classList.add(`hb-${header.tag}`);
+    // Hid is used by ScrollTo() in content.js
+    headerBox.setAttribute("data-hid", index);
 
+    // Behavior when a header is clicked
     headerBox.addEventListener("click", (e) => {
       console.log(e.target);
+      sendToContent({ request: "scrollTo", target: headerBox.dataset.hid });
     });
 
     if (header.content != "") {

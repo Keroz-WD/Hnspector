@@ -50,6 +50,14 @@ const contrastContent = (isActive) => {
   }
 };
 
+// Scroll to element with hid value in dataset
+const ScrollTo = (hid) => {
+  hnNodeList[hid].scrollIntoView({
+    behavior: "smooth",
+    block: "center",
+  });
+};
+
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   createDataList(hnNodeList);
 
@@ -67,6 +75,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     case "contrastOff":
       // Remove contrast
       contrastContent(false);
+      break;
+    case "scrollTo":
+      ScrollTo(message.target);
       break;
   }
 });
