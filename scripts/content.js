@@ -6,16 +6,16 @@ const hnNodeList = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
 
 let dataList = [];
 
-// Formats data to be sent to popup
+// Formats data to be sent to popup.js
 const createDataList = (titles) => {
-  const metaDescription = document
-    .querySelector("meta[name='description']")
-    .getAttribute("content");
-  dataList.push({
-    url: document.URL,
-    title: document.title,
-    description: metaDescription,
-  });
+  // Init dataList strucutre
+  dataList = {
+    pageInfo: {
+      url: document.URL,
+      title: document.title || "<Page title is missing>",
+    },
+    headers: [],
+  };
 
   class HnData {
     constructor(tag, content) {
@@ -24,40 +24,40 @@ const createDataList = (titles) => {
     }
   }
 
-  let hnList = [];
-
   titles.forEach((element) => {
-    hnList.push(new HnData(element.nodeName, element.textContent));
+    dataList.headers.push(new HnData(element.nodeName, element.textContent));
   });
-
-  dataList.push(hnList);
 };
 
 // Highlight all Hn tags by changing their background color to yellow
 const highlightHeaders = (titles) => {
   titles.forEach((element) => {
-    console.log(element.tagName);
     element.classList.toggle("hns-header");
     element.classList.toggle(`hns-${element.tagName}`);
   });
 };
 
-const contrastContent = (isActive) => {
-  if (isActive) {
-    console.log("contrast on");
+// Scroll to element with hid value in dataset
+const ScrollTo = (hid) => {
+  if (hnNodeList[hid]) {
+    hnNodeList[hid].scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
   } else {
-    console.log("contrast off");
+    console.error("Index incorrect pour ScrollTo:", hid);
   }
 };
 
-// Scroll to element with hid value in dataset
-const ScrollTo = (hid) => {
-  hnNodeList[hid].scrollIntoView({
-    behavior: "smooth",
-    block: "center",
-  });
+// Check if headers are highlighted
+const isHighlighted = () => {
+  console.log("Is highlighted request");
+  const highlighted =
+    hnNodeList.length > 0 && hnNodeList[0].classList.contains("hns-header");
+  return { highlight: highlighted };
 };
 
+// Listen requests sent by popup.js
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   createDataList(hnNodeList);
 
@@ -65,16 +65,11 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     case "getData":
       sendResponse(dataList);
       break;
+    case "checkHighlight":
+      sendResponse(isHighlighted());
+      break;
     case "highlight":
       highlightHeaders(hnNodeList);
-      break;
-    case "contrastOn":
-      // Contrast content
-      contrastContent(true);
-      break;
-    case "contrastOff":
-      // Remove contrast
-      contrastContent(false);
       break;
     case "scrollTo":
       ScrollTo(message.target);

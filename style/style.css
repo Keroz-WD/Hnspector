@@ -54,6 +54,12 @@ h2 {
   gap: 24px;
 }
 
+.title-warning {
+  color: var(--warning);
+  font-style: italic;
+  user-select: none;
+}
+
 .headers {
   display: flex;
   flex-direction: column;
@@ -108,7 +114,7 @@ h2 {
 
 .hb-H6:hover {
   background-color: var(--h6);
-  color: var(--box-bg);s
+  color: var(--box-bg);
 }
 
 .empty-tag {
@@ -129,7 +135,7 @@ h2 {
   margin: 10px 8px 10px 0;
 }
 
-.warning {
+.gap-warning {
   background-color: var(--warning);
 }
 

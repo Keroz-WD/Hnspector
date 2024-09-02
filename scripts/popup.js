@@ -1,24 +1,16 @@
 "use strict";
 
+let highlightToggle = {};
+
 document.addEventListener("DOMContentLoaded", () => {
-  const highlightToggle = document.getElementById("highlightToggle");
-  const contrastToggle = document.getElementById("contrastToggle");
+  highlightToggle = document.getElementById("highlightToggle");
 
   sendToContent({ request: "getData" });
+  sendToContent({ request: "checkHighlight" });
 
-  // Send request to highlight all headers in DOM
   highlightToggle.addEventListener("change", () =>
     sendToContent({ request: "highlight" })
   );
-
-  // Contrast titles with the rest of the content
-  contrastToggle.addEventListener("change", () => {
-    if (contrastToggle.checked) {
-      sendToContent({ request: "contrastOn" });
-    } else {
-      sendToContent({ request: "contrastOff" });
-    }
-  });
 });
 
 // Send requests to content.js and receive responses
@@ -36,23 +28,36 @@ const sendToContent = (request) => {
 
 // Manage responses from content.js
 const manageResponse = (response) => {
-  const actions = {
-    dataList: displayData(response),
-  };
-  return actions[response];
+  if (response.pageInfo && response.headers) {
+    // If response contains page info and headers list
+    displayData(response);
+  } else if (response.highlight !== undefined) {
+    // If response contains headers highlight status
+    initHighlightToggle(response.highlight);
+  } else {
+    console.warn("Unexpected response :", response);
+  }
 };
 
 // Display all data in Popup
 const displayData = (dataList) => {
-  console.log(dataList);
-  displayPageInfo(dataList[0]);
-  displayHeaders(dataList[1]);
-  displaySummary(dataList[1]);
+  //console.log(dataList);
+  displayPageInfo(dataList.pageInfo);
+  displayHeaders(dataList.headers);
+  displaySummary(dataList.headers);
+};
+
+const initHighlightToggle = (isActive) => {
+  highlightToggle.checked = isActive;
 };
 
 // Display page title
 const displayPageInfo = (pageInfo) => {
-  document.getElementById("pageTitle").textContent = pageInfo.title;
+  const pageTitle = document.getElementById("pageTitle");
+  if (pageInfo.title === "<Page title is missing>") {
+    pageTitle.classList.add("title-warning");
+  }
+  pageTitle.textContent = pageInfo.title;
 };
 
 // Display headers list in order of apparence in page html
@@ -83,7 +88,7 @@ const displayHeaders = (data) => {
       dotSpacer.classList.add("dot-spacer");
       // Alert if the gap is > 1 with previous header
       if (i - previousHn > 0) {
-        dotSpacer.classList.add("warning");
+        dotSpacer.classList.add("gap-warning");
       }
       indentation.appendChild(dotSpacer);
     }
@@ -97,7 +102,6 @@ const displayHeaders = (data) => {
 
     // Behavior when a header is clicked
     headerBox.addEventListener("click", (e) => {
-      console.log(e.target);
       sendToContent({ request: "scrollTo", target: headerBox.dataset.hid });
     });
 
