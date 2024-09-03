@@ -1,7 +1,5 @@
 "use strict";
 
-console.log("Content.js : OK");
-
 const hnNodeList = Array.from(
   document.querySelectorAll("h1, h2, h3, h4, h5, h6")
 );
@@ -47,13 +45,12 @@ const ScrollTo = (hid) => {
       block: "center",
     });
   } else {
-    console.error("Index incorrect pour ScrollTo:", hid);
+    console.error("Incorrect index to scroll to:", hid);
   }
 };
 
 // Check if headers are highlighted
 const isHighlighted = () => {
-  console.log("Is highlighted request");
   const highlighted =
     hnNodeList.length > 0 && hnNodeList[0].classList.contains("hns-header");
   return { highlight: highlighted };
@@ -77,6 +74,6 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       ScrollTo(message.target);
       break;
     default:
-      console.warn("Unknown request recieved:", message.request);
+      console.warn("Unknown request received:", message.request);
   }
 });

@@ -1,10 +1,11 @@
 "use strict";
 
 let highlightToggle = {};
+let csvButton = {};
 
 document.addEventListener("DOMContentLoaded", () => {
   highlightToggle = document.getElementById("highlightToggle");
-  const exportCSV = document.getElementById("exportCSV");
+  csvButton = document.getElementById("csvButton");
 
   sendToContent({ request: "getData" });
   sendToContent({ request: "checkHighlight" });
@@ -13,9 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sendToContent({ request: "highlight" })
   );
 
-  exportCSV.addEventListener("click", () => {
-    console.log("Export data to csv.");
-  });
+  csvButton.classList.add("disabled");
 });
 
 // Send requests to content.js and receive responses
@@ -25,7 +24,7 @@ const sendToContent = (request) => {
       if (response) {
         manageResponse(response);
       } else {
-        // Catch error
+        console.warn("No response received from content");
       }
     });
   });
@@ -36,6 +35,7 @@ const manageResponse = (response) => {
   if (response.pageInfo && response.headers) {
     // If response contains page info and headers list
     displayData(response);
+    convertDataToCSV(response);
   } else if (response.highlight !== undefined) {
     // If response contains headers highlight status
     initHighlightToggle(response.highlight);
@@ -52,9 +52,7 @@ const displayData = (dataList) => {
   displaySummary(dataList.headers);
 };
 
-const initHighlightToggle = (isActive) => {
-  highlightToggle.checked = isActive;
-};
+const initHighlightToggle = (isActive) => (highlightToggle.checked = isActive);
 
 // Display page title
 const displayPageInfo = (pageInfo) => {
@@ -130,4 +128,37 @@ const displaySummary = (data) => {
     document.getElementById("totalH" + i).textContent = getHnTotal(i);
   }
   document.getElementById("totalHn").textContent = data.length;
+};
+
+// Export headers list to csv
+const convertDataToCSV = (data) => {
+  // Checks whether there is any data to process
+  if (!data) {
+    console.warn("No data to export as csv received.");
+    return;
+  }
+
+  const headers = data.headers;
+  const processedData = [];
+
+  let csvContent = "";
+
+  headers.forEach((item) => {
+    processedData.push(Object.values(item));
+  });
+
+  processedData.forEach((entry) => {
+    csvContent += entry.join(",") + "\n";
+  });
+
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8," });
+  const objUrl = URL.createObjectURL(blob);
+
+  csvButton.setAttribute("href", objUrl);
+  csvButton.setAttribute(
+    "download",
+    `Headers from ${data.pageInfo.url.replace("://", "_")}.csv`
+  );
+
+  csvButton.classList.remove("disabled");
 };
