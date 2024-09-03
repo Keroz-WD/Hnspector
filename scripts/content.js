@@ -2,7 +2,9 @@
 
 console.log("Content.js : OK");
 
-const hnNodeList = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+const hnNodeList = Array.from(
+  document.querySelectorAll("h1, h2, h3, h4, h5, h6")
+);
 
 let dataList = [];
 
@@ -74,5 +76,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     case "scrollTo":
       ScrollTo(message.target);
       break;
+    default:
+      console.warn("Unknown request recieved:", message.request);
   }
 });

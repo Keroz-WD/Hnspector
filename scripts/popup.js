@@ -4,6 +4,7 @@ let highlightToggle = {};
 
 document.addEventListener("DOMContentLoaded", () => {
   highlightToggle = document.getElementById("highlightToggle");
+  const exportCSV = document.getElementById("exportCSV");
 
   sendToContent({ request: "getData" });
   sendToContent({ request: "checkHighlight" });
@@ -11,6 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
   highlightToggle.addEventListener("change", () =>
     sendToContent({ request: "highlight" })
   );
+
+  exportCSV.addEventListener("click", () => {
+    console.log("Export data to csv.");
+  });
 });
 
 // Send requests to content.js and receive responses
