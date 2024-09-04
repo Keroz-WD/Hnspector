@@ -1,6 +1,6 @@
 "use strict";
 
-const hnNodeList = Array.from(
+let hnNodeList = Array.from(
   document.querySelectorAll("h1, h2, h3, h4, h5, h6")
 );
 
@@ -28,6 +28,21 @@ const createDataList = (titles) => {
     dataList.headers.push(new HnData(element.nodeName, element.textContent));
   });
 };
+
+// Updates the list of titles and reacts to DOM changes
+const updateHeaders = () => {
+  hnNodeList = Array.from(document.querySelectorAll("h1, h2, h3, h4, h5, h6"));
+  createDataList(hnNodeList);
+};
+
+// Observer to detect DOM changes
+const observer = new MutationObserver(updateHeaders);
+
+// Observe the addition and deletion of nodes in the DOM
+observer.observe(document.body, { childList: true, subtree: true });
+
+// Mettre à jour les titres au démarrage
+updateHeaders();
 
 // Highlight all Hn tags by changing their background color to yellow
 const highlightHeaders = (titles) => {
