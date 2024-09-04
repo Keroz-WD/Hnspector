@@ -1,10 +1,12 @@
 "use strict";
 
 let highlightToggle = {};
+let copyButton = {};
 let csvButton = {};
 
 document.addEventListener("DOMContentLoaded", () => {
   highlightToggle = document.getElementById("highlightToggle");
+  copyButton = document.getElementById("copyButton");
   csvButton = document.getElementById("csvButton");
 
   sendToContent({ request: "getData" });
@@ -14,6 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     sendToContent({ request: "highlight" })
   );
 
+  copyButton.classList.add("disabled");
   csvButton.classList.add("disabled");
 });
 
@@ -154,11 +157,16 @@ const convertDataToCSV = (data) => {
   const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8," });
   const objUrl = URL.createObjectURL(blob);
 
+  copyButton.addEventListener("click", () => {
+    navigator.clipboard.writeText(csvContent);
+  });
+
   csvButton.setAttribute("href", objUrl);
   csvButton.setAttribute(
     "download",
     `Headers from ${data.pageInfo.url.replace("://", "_")}.csv`
   );
 
+  copyButton.classList.remove("disabled");
   csvButton.classList.remove("disabled");
 };

@@ -252,22 +252,23 @@ input:checked+.slider:before {
 
 /* Export button */
 
-#csvButton {
+.button {
   text-decoration: none;
   color: var(--dark-grey);
   border: 1px solid var(--dark-grey);
   padding: 4px 8px;
   border-radius: 4px;
   user-select: none;
+  cursor: pointer;
 }
 
-#csvButton:hover {
+.button:hover {
   border: 1px solid var(--ok-blue);
   background-color: var(--ok-blue);
   color: var(--body-bg);
 }
 
-#csvButton.disabled {
+.button.disabled {
   pointer-events: none;
   color: var(--light-grey);
   border: 1px solid var(--light-grey);
