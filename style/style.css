@@ -147,7 +147,7 @@ h2 {
 
 .hn-box {
   min-width: 24px;
-  min-height: 24px;
+  height: 24px;
   border-radius: 4px;
   color: var(--box-bg);
   font-weight: 600;
