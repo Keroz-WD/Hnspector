@@ -38,7 +38,10 @@ const manageResponse = (response) => {
   if (response.pageInfo && response.headers) {
     // If response contains page info and headers list
     displayData(response);
-    convertDataToCSV(response);
+    // If no headers in DOM then disable export feature
+    if (response.headers.length > 0) {
+      convertDataToCSV(response);
+    }
   } else if (response.highlight !== undefined) {
     // If response contains headers highlight status
     initHighlightToggle(response.highlight);
@@ -49,7 +52,6 @@ const manageResponse = (response) => {
 
 // Display all data in Popup
 const displayData = (dataList) => {
-  //console.log(dataList);
   displayPageInfo(dataList.pageInfo);
   displayHeaders(dataList.headers);
   displaySummary(dataList.headers);
@@ -70,8 +72,19 @@ const displayPageInfo = (pageInfo) => {
 const displayHeaders = (data) => {
   const headersList = document.getElementById("headersList");
 
+  if (data.length === 0) {
+    console.warn("No header found.");
+    const row = document.createElement("div");
+    row.classList.add("row");
+    row.classList.add("title-warning");
+    row.textContent = "<No header found>";
+    headersList.appendChild(row);
+    return;
+  }
+
   let previousHn = 0;
 
+  // Display headers as a list
   data.map((header, index) => {
     const row = document.createElement("div");
     const indentation = document.createElement("div");
