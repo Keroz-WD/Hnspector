@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Hnspector",
-  "version": "0.1",
-  "description": "A web page's Hn tags analyser.",
+  "version": "1.0",
+  "description": "Get all Hn tags in a web page.",
   "author": "kerozwebdesign@gmail.com",
   "icons": {
     "16": "images/icon-16.png",
@@ -17,7 +17,7 @@
       "48": "images/icon-48.png",
       "128": "images/icon-128.png"
     },
-    "default_title": "Hnspector",
+    "default_title": "Get heading tags list",
     "default_popup": "popup.html"
   },
   "content_scripts": [
