@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Hnspector",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "Inspect all Hn tags in a web page.",
   "author": "kerozextensions@gmail.com",
   "icons": {
