@@ -1,3 +1,4 @@
 # Ignorer les fichiers de test
 /tests
 /sources
+/export

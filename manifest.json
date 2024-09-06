@@ -2,8 +2,8 @@
   "manifest_version": 3,
   "name": "Hnspector",
   "version": "1.0",
-  "description": "Get all Hn tags in a web page.",
-  "author": "kerozwebdesign@gmail.com",
+  "description": "Inspect all Hn tags in a web page.",
+  "author": "kerozextensions@gmail.com",
   "icons": {
     "16": "images/icon-16.png",
     "32": "images/icon-32.png",
