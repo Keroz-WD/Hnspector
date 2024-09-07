@@ -54,6 +54,7 @@ h2 {
   gap: 24px;
   align-items: center;
   padding: 6px 8px;
+  font-size: 13px;
 }
 
 .title-warning {
@@ -255,9 +256,9 @@ input:checked+.slider:before {
 .button {
   text-decoration: none;
   color: var(--dark-grey);
-  border: 1px solid var(--dark-grey);
-  padding: 2px 8px;
-  border-radius: 4px;
+  border: 1px solid var(--mid-grey);
+  padding: 2px 12px;
+  border-radius: 8px;
   user-select: none;
   cursor: pointer;
   transition: 0.3s;
@@ -273,4 +274,47 @@ input:checked+.slider:before {
   pointer-events: none;
   color: var(--light-grey);
   border: 1px solid var(--light-grey);
+}
+
+/* Footer */
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  color: var(--mid-grey);
+  font-size: 11px;
+
+}
+
+.buymeacoffee {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.buymeacoffee p {
+  width: 210px;
+  user-select: none;
+}
+
+.buymeacoffee img {
+  padding: 4px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--mid-grey);
+  background-color: var(--box-bg);
+}
+
+.buymeacoffee img:hover {
+  border: 1px solid var(--ok-blue);
+}
+
+.signature {
+  display: flex;
+  flex-direction: column;
+}
+
+.signature #title {
+  font-size: 13px;
+  color: var(--ok-blue);
+  font-weight: 600;
 }
