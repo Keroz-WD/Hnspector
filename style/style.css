@@ -25,13 +25,13 @@ body {
   width: 500px;
   background-color: var(--body-bg);
   border: 2px solid var(--ok-blue);
-  padding: 8px 4px;
+  padding: 4px;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
   font-size: 15px;
   display: flex;
   color: var(--dark-grey);
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
 }
 
 h2 {
@@ -53,7 +53,7 @@ h2 {
   flex-direction: row;
   gap: 24px;
   align-items: center;
-
+  padding: 6px 8px;
 }
 
 .title-warning {
@@ -256,7 +256,7 @@ input:checked+.slider:before {
   text-decoration: none;
   color: var(--dark-grey);
   border: 1px solid var(--dark-grey);
-  padding: 4px 8px;
+  padding: 2px 8px;
   border-radius: 4px;
   user-select: none;
   cursor: pointer;
