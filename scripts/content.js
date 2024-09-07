@@ -25,7 +25,9 @@ const createDataList = (titles) => {
   }
 
   titles.forEach((element) => {
-    dataList.headers.push(new HnData(element.nodeName, element.textContent));
+    dataList.headers.push(
+      new HnData(element.nodeName, element.textContent.trim())
+    );
   });
 };
 

@@ -89,6 +89,7 @@ const displayHeaders = (data) => {
     const row = document.createElement("div");
     const indentation = document.createElement("div");
     const hnBox = document.createElement("div");
+    const spanHn = document.createElement("span");
     const headerBox = document.createElement("div");
 
     row.classList.add("row");
@@ -96,7 +97,7 @@ const displayHeaders = (data) => {
     hnBox.classList.add("hn-box");
     headerBox.classList.add("headerBox");
 
-    hnBox.textContent = header.tag;
+    spanHn.textContent = header.tag;
     hnBox.classList.add(`${header.tag.toLowerCase()}-box`);
 
     row.appendChild(indentation);
@@ -113,6 +114,7 @@ const displayHeaders = (data) => {
     }
 
     row.appendChild(hnBox);
+    hnBox.appendChild(spanHn);
     row.appendChild(headerBox);
 
     headerBox.classList.add(`hb-${header.tag}`);
@@ -122,6 +124,11 @@ const displayHeaders = (data) => {
     // Behavior when a header is clicked
     headerBox.addEventListener("click", (e) => {
       sendToContent({ request: "scrollTo", target: headerBox.dataset.hid });
+    });
+
+    // Copy header content to clipboard
+    hnBox.addEventListener("click", () => {
+      navigator.clipboard.writeText(header.content);
     });
 
     if (header.content != "") {

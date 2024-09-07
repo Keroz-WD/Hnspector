@@ -156,6 +156,21 @@ h2 {
   justify-content: center;
   align-items: center;
   user-select: none;
+  cursor: pointer;
+}
+
+.hn-box:hover {
+  background-color: var(--ok-blue);
+}
+
+.hn-box:hover span {
+  display: none;
+}
+
+.hn-box:hover:before {
+  content: url(../images/copy.svg);
+  width: 20px;
+  height: 20px;
 }
 
 .hn-sum {
