@@ -281,9 +281,9 @@ input:checked+.slider:before {
 .footer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   color: var(--mid-grey);
   font-size: 11px;
-
 }
 
 .buymeacoffee {
@@ -297,6 +297,11 @@ input:checked+.slider:before {
   user-select: none;
 }
 
+.buymeacoffee a {
+  display: flex;
+  align-items: center;
+}
+
 .buymeacoffee img {
   padding: 4px 12px;
   border-radius: 8px;
@@ -306,6 +311,7 @@ input:checked+.slider:before {
 
 .buymeacoffee img:hover {
   border: 1px solid var(--ok-blue);
+  background-color: var(--ok-blue);
 }
 
 .signature {
