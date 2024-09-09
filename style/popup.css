@@ -27,7 +27,7 @@ body {
   border: 2px solid var(--ok-blue);
   padding: 4px;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   display: flex;
   color: var(--dark-grey);
   flex-direction: column;
