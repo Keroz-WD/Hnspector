@@ -307,8 +307,8 @@ input:checked+.slider:before {
   gap: 8px;
 }
 
-.buymeacoffee p {
-  width: 210px;
+.buymeacoffee span {
+  width: 190px;
   user-select: none;
 }
 
