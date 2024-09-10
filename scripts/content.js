@@ -3,8 +3,9 @@
 let hnNodeList = Array.from(
   document.querySelectorAll("h1, h2, h3, h4, h5, h6")
 );
-
 let dataList = [];
+let hBoxArray = [];
+let hBoxInitialized = false;
 
 // Formats data to be sent to popup.js
 const createDataList = (titles) => {
@@ -49,9 +50,33 @@ updateHeaders();
 // Highlight all Hn tags by changing their background color to yellow
 const highlightHeaders = (titles) => {
   titles.forEach((element) => {
+    // Check if H tag is not empty
+    if (element.textContent === "") return;
+
+    // Change element's background
     element.classList.toggle("hns-header");
     element.classList.toggle(`hns-${element.tagName}`);
+
+    if (hBoxInitialized === false) {
+      buildHnBoxes(element);
+    }
   });
+
+  hBoxArray.forEach((element) => element.classList.toggle("hns-show"));
+
+  hBoxInitialized = true;
+};
+
+// Add header tag indicator
+const buildHnBoxes = (element) => {
+  const hBox = document.createElement("div");
+
+  hBox.classList.add("hns-hBox");
+  hBox.classList.add(`hns-${element.tagName}`);
+
+  hBox.textContent = element.tagName;
+  element.appendChild(hBox);
+  hBoxArray.push(hBox);
 };
 
 // Scroll to element with hid value in dataset
