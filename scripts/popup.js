@@ -191,7 +191,7 @@ const convertDataToCSV = (data) => {
   csvButton.setAttribute("href", objUrl);
   csvButton.setAttribute(
     "download",
-    `Headers from ${data.pageInfo.url.replace("://", "_")}.csv`
+    `Headers_from_${data.pageInfo.url.replace("://", "_")}.csv`
   );
 
   copyButton.classList.remove("disabled");
