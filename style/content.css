@@ -10,51 +10,57 @@
 .hns-header {
   position: relative;
   outline: dashed 1px rgb(185, 185, 185);
+  border-radius: 4px;
 }
 
 .hns-H1 {
   background-color: var(--hns-h1) !important;
-  color: white !important;
 }
 
 .hns-H2 {
   background-color: var(--hns-h2) !important;
-  color: white !important;
 }
 
 .hns-H3 {
   background-color: var(--hns-h3) !important;
-  color: white !important;
 }
 
 .hns-H4 {
   background-color: var(--hns-h4) !important;
-  color: white !important;
 }
 
 .hns-H5 {
   background-color: var(--hns-h5) !important;
-  color: white !important;
 }
 
 .hns-H6 {
   background-color: var(--hns-h6) !important;
+}
+
+h1.hns-header,
+h2.hns-header,
+h3.hns-header,
+h4.hns-header,
+h5.hns-header,
+h6.hns-header {
   color: white !important;
 }
 
 .hns-hBox {
   position: absolute;
-  top: -20px;
+  top: -22px;
+  left: 2px;
+  box-shadow: 1px 1px 2px rgb(0, 0, 0, 0.3);
   z-index: 99;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 20px;
-  height: 20px;
-  border: 1px solid rgb(185, 185, 185);
+  width: 24px;
+  height: 24px;
+  border: 1px solid rgb(185, 185, 185, 0.8);
   border-radius: 4px;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   user-select: none;
