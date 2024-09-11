@@ -155,18 +155,21 @@ h2 {
   justify-content: center;
   align-items: center;
   user-select: none;
+}
+
+#headersList .hn-box {
   cursor: pointer;
 }
 
-.hn-box:hover {
+#headersList .hn-box:hover {
   background-color: var(--ok-blue);
 }
 
-.hn-box:hover span {
+#headersList .hn-box:hover span {
   display: none;
 }
 
-.hn-box:hover:before {
+#headersList .hn-box:hover:before {
   content: url(../images/copy.svg);
   width: 20px;
   height: 20px;
@@ -337,4 +340,21 @@ input:checked+.slider:before {
   font-size: 13px;
   color: var(--ok-blue);
   font-weight: 600;
+}
+
+/* Visual feedback animations */
+@keyframes flash {
+  0% {
+    background-color: var(--ok-blue);
+    outline: 1px dashed var(--dark-grey);
+  }
+
+  100% {
+    background-color: var(--body-bg);
+    outline: 1px dashed var(--dark-grey);
+  }
+}
+
+.hn-box.copied {
+  animation: flash 0.2s;
 }

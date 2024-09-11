@@ -128,7 +128,13 @@ const displayHeaders = (data) => {
 
     // Copy header content to clipboard
     hnBox.addEventListener("click", () => {
-      navigator.clipboard.writeText(header.content);
+      navigator.clipboard.writeText(header.content).then(() => {
+        // Feedback animation
+        hnBox.classList.add("copied");
+        setTimeout(() => {
+          hnBox.classList.remove("copied");
+        }, 200);
+      });
     });
 
     if (header.content != "") {
