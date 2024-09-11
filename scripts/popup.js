@@ -137,6 +137,7 @@ const displayHeaders = (data) => {
       });
     });
 
+    // Check if header tag is not empty
     if (header.content != "") {
       headerBox.textContent = header.content;
     } else {

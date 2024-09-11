@@ -272,23 +272,43 @@ input:checked+.slider:before {
   border-radius: 50%;
 }
 
-/* Export button */
+/* Export buttons */
+
+#copyButton::before {
+  content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMxOTE5MTkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNsaXBib2FyZC1saXN0Ij48cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI0IiB4PSI4IiB5PSIyIiByeD0iMSIgcnk9IjEiLz48cGF0aCBkPSJNMTYgNGgyYTIgMiAwIDAgMSAyIDJ2MTRhMiAyIDAgMCAxLTIgMkg2YTIgMiAwIDAgMS0yLTJWNmEyIDIgMCAwIDEgMi0yaDIiLz48cGF0aCBkPSJNMTIgMTFoNCIvPjxwYXRoIGQ9Ik0xMiAxNmg0Ii8+PHBhdGggZD0iTTggMTFoLjAxIi8+PHBhdGggZD0iTTggMTZoLjAxIi8+PC9zdmc+);
+  margin-right: 4px;
+}
+
+#csvButton::before {
+  content: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMxOTE5MTkiIHN0cm9rZS13aWR0aD0iMS41IiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWZpbGUtZG93biI+PHBhdGggZD0iTTE1IDJINmEyIDIgMCAwIDAtMiAydjE2YTIgMiAwIDAgMCAyIDJoMTJhMiAyIDAgMCAwIDItMlY3WiIvPjxwYXRoIGQ9Ik0xNCAydjRhMiAyIDAgMCAwIDIgMmg0Ii8+PHBhdGggZD0iTTEyIDE4di02Ii8+PHBhdGggZD0ibTkgMTUgMyAzIDMtMyIvPjwvc3ZnPg==);
+  margin-right: 4px;
+}
 
 .button {
   text-decoration: none;
   color: var(--dark-grey);
   border: 1px solid var(--mid-grey);
-  padding: 2px 12px;
+  padding: 4px 12px 1px;
   border-radius: 8px;
   user-select: none;
   cursor: pointer;
   transition: 0.3s;
 }
 
+.button span {
+  position: relative;
+  top: -2px;
+}
+
 .button:hover {
   border: 1px solid var(--ok-blue);
   background-color: var(--ok-blue);
-  color: var(--body-bg);
+  color: var(--box-bg);
+}
+
+#csvButton:hover::before,
+#copyButton:hover::before {
+  filter: invert(1);
 }
 
 .button.disabled {
