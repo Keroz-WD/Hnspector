@@ -133,7 +133,7 @@ const displayHeaders = (data) => {
         hnBox.classList.add("copied");
         setTimeout(() => {
           hnBox.classList.remove("copied");
-        }, 200);
+        }, 1600);
       });
     });
 
