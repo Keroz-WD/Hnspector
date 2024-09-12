@@ -63,7 +63,7 @@ h2 {
 .headers {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 4px;
 }
 
 .headers .row {
@@ -220,13 +220,15 @@ h2 {
 
 .toggle {
   user-select: none;
+  cursor: pointer;
 }
 
 .switch {
   position: relative;
   display: inline-block;
-  width: 32px;
-  height: 16px;
+  top: 1px;
+  width: 24px;
+  height: 14px;
 }
 
 .switch input {
@@ -250,8 +252,8 @@ h2 {
   content: "";
   height: 12px;
   width: 12px;
-  left: 2px;
-  bottom: 2px;
+  left: 1px;
+  bottom: 1px;
   background-color: var(--body-bg);
   transition: .4s;
 }
@@ -261,7 +263,7 @@ input:checked+.slider {
 }
 
 input:checked+.slider:before {
-  transform: translateX(16px);
+  transform: translateX(10px);
 }
 
 .slider.round {
