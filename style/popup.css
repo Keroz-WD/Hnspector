@@ -2,6 +2,7 @@
   --body-bg: #F4F4F4;
   --box-bg: #FFFFFF;
   --ok-blue: #0C8CE9;
+  --ok-light-blue: #52aef0;
   --dark-grey: #191919;
   --mid-grey: #676767;
   --light-grey: #D2D2D2;
@@ -22,7 +23,6 @@
 body {
   width: 500px;
   background-color: var(--body-bg);
-  border: 2px solid var(--ok-blue);
   padding: 4px;
   font-family: 'Inter', Helvetica, Arial, sans-serif;
   font-size: 14px;
@@ -381,4 +381,24 @@ input:checked+.slider:before {
 
 .hn-box.copied {
   animation: flash 0.3s ease-in-out;
+}
+
+/* Scrollbar */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--light-grey);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--ok-blue);
+  border-radius: 8px;
+  border: 1px solid var(--light-grey);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--ok-light-blue);
 }
