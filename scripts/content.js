@@ -118,4 +118,5 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     default:
       console.warn("Unknown request received:", message.request);
   }
+  return true; //  ¯\_(ツ)_/¯
 });

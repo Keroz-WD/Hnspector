@@ -23,13 +23,22 @@ document.addEventListener("DOMContentLoaded", () => {
 // Send requests to content.js and receive responses
 const sendToContent = (request) => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    chrome.tabs.sendMessage(tabs[0].id, request, (response) => {
-      if (response) {
-        manageResponse(response);
-      } else {
-        console.warn("No response received from content");
-      }
-    });
+    if (tabs.length > 0) {
+      chrome.tabs.sendMessage(tabs[0].id, request, (response) => {
+        if (chrome.runtime.lastError) {
+          console.error(
+            "Error sending message to content script:",
+            chrome.runtime.lastError.message
+          );
+        } else if (response) {
+          manageResponse(response);
+        } else {
+          console.warn("No response received from content");
+        }
+      });
+    } else {
+      console.warn("No active tab found.");
+    }
   });
 };
 

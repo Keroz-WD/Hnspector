@@ -44,6 +44,7 @@ h4.hns-header,
 h5.hns-header,
 h6.hns-header {
   color: white !important;
+  overflow: visible !important;
 }
 
 .hns-hBox {
