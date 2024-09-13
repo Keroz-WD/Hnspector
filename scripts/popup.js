@@ -194,7 +194,14 @@ const convertDataToCSV = (data) => {
   const objUrl = URL.createObjectURL(blob);
 
   copyButton.addEventListener("click", () => {
-    navigator.clipboard.writeText(csvContent);
+    navigator.clipboard.writeText(csvContent).then(() => {
+      // Feedback animation
+      copyButton.classList.add("copied");
+
+      setTimeout(() => {
+        copyButton.classList.remove("copied");
+      }, 1600);
+    });
   });
 
   csvButton.setAttribute("href", objUrl);
@@ -202,6 +209,14 @@ const convertDataToCSV = (data) => {
     "download",
     `Headers_from_${data.pageInfo.url.replace("://", "_")}.csv`
   );
+
+  csvButton.addEventListener("click", () => {
+    // Feedback animation
+    csvButton.classList.add("copied");
+    setTimeout(() => {
+      csvButton.classList.remove("copied");
+    }, 1600);
+  });
 
   copyButton.classList.remove("disabled");
   csvButton.classList.remove("disabled");
