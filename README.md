@@ -4,8 +4,10 @@ A Chrome extension that inspects heading tags in web pages.
 
 ## Key Features
 
-- List of header tags
-- Summarises the number of each type of header
-- Highlights web page headings
-- Scrolls to the selected header
-- Export data in .csv format
+- Retrieves titles from the browser's active tab and displays them as a list
+- Highlights web page titles
+- Copies content of the targeted header to the clipboard
+- Scrolls web page to the selected header
+- Summarises the number of each header type
+- Copy data in .csv format to clipboard
+- Download data in a .csv file
