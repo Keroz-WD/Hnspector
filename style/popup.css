@@ -296,7 +296,6 @@ input:checked+.slider:before {
 }
 
 .button {
-  min-width: 80px;
   text-align: center;
   text-decoration: none;
   color: var(--dark-grey);
