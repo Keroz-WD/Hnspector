@@ -56,8 +56,8 @@ h6.hns-header {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 20px;
   border: 1px solid rgb(185, 185, 185, 0.8);
   border-radius: 4px;
   color: white;
