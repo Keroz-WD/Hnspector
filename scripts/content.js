@@ -26,9 +26,14 @@ const createDataList = (titles) => {
   }
 
   titles.forEach((element) => {
-    dataList.headers.push(
-      new HnData(element.nodeName, element.textContent.trim())
-    );
+    let content = "";
+    if (hBoxInitialized) {
+      // Remove Hn indicator value injected in DOM
+      content = element.textContent.trim().slice(0, -2);
+    } else {
+      content = element.textContent.trim();
+    }
+    dataList.headers.push(new HnData(element.nodeName, content));
   });
 };
 
@@ -47,7 +52,7 @@ observer.observe(document.body, { childList: true, subtree: true });
 // Mettre à jour les titres au démarrage
 updateHeaders();
 
-// Highlight all Hn tags by changing their background color to yellow
+// Highlight headings
 const highlightHeaders = (titles) => {
   titles.forEach((element) => {
     // Check if H tag is not empty
