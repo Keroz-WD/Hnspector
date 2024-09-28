@@ -87,6 +87,11 @@ h2 {
   cursor: pointer;
 }
 
+.highlight {
+  background-color: var(--ok-blue);
+  color: white;
+}
+
 .hb-H1:hover {
   background-color: var(--h1);
   color: var(--box-bg);

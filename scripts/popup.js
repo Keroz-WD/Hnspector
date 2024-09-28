@@ -100,6 +100,7 @@ const displayHeaders = (data) => {
     const hnBox = document.createElement("div");
     const spanHn = document.createElement("span");
     const headerBox = document.createElement("div");
+    const headerSpan = document.createElement("span");
 
     row.classList.add("row");
     indentation.classList.add("indentation");
@@ -125,6 +126,7 @@ const displayHeaders = (data) => {
     row.appendChild(hnBox);
     hnBox.appendChild(spanHn);
     row.appendChild(headerBox);
+    headerBox.appendChild(headerSpan);
 
     headerBox.classList.add(`hb-${header.tag}`);
     // Hid is used by ScrollTo() in content.js
@@ -146,12 +148,24 @@ const displayHeaders = (data) => {
       });
     });
 
+    // Highlight selected heading about to be copied
+    hnBox.addEventListener("mouseover", () => {
+      if (header.content != "") {
+        headerSpan.classList.toggle("highlight");
+      }
+    });
+    hnBox.addEventListener("mouseout", () => {
+      if (header.content != "") {
+        headerSpan.classList.toggle("highlight");
+      }
+    });
+
     // Check if header tag is not empty
     if (header.content != "") {
-      headerBox.textContent = header.content;
+      headerSpan.textContent = header.content;
     } else {
-      headerBox.textContent = "<empty tag>";
-      headerBox.classList.add("empty-tag");
+      headerSpan.textContent = "<empty tag>";
+      headerSpan.classList.add("empty-tag");
     }
 
     headersList.appendChild(row);
