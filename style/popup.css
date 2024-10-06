@@ -397,12 +397,23 @@ input:checked+.slider:before {
   }
 }
 
-.button.copied {
+.button.copied,
+.hn-box.copied {
   animation: flash 0.3s ease-in-out;
 }
 
-.hn-box.copied {
-  animation: flash 0.3s ease-in-out;
+.headerBox.copied {
+  visibility: hidden;
+  position: relative;
+}
+
+.headerBox.copied:after {
+  visibility: visible;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  content: "Heading copied to clipboard";
+  color: var(--ok-blue);
 }
 
 /* Scrollbar */

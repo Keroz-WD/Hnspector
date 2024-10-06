@@ -142,8 +142,10 @@ const displayHeaders = (data) => {
       navigator.clipboard.writeText(header.content).then(() => {
         // Feedback animation
         hnBox.classList.add("copied");
+        headerBox.classList.add("copied");
         setTimeout(() => {
           hnBox.classList.remove("copied");
+          headerBox.classList.remove("copied");
         }, 1600);
       });
     });
