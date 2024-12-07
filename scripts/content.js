@@ -87,13 +87,46 @@ const buildHnBoxes = (element) => {
 // Scroll to element with hid value in dataset
 const ScrollTo = (hid) => {
   if (hnNodeList[hid]) {
-    hnNodeList[hid].scrollIntoView({
-      behavior: "smooth",
-      block: "center",
-    });
+    const targetElement = hnNodeList[hid];
+
+    const isScrollNeeded = () => {
+      const viewportHeight = window.innerHeight;
+      const rect = targetElement.getBoundingClientRect();
+      return rect.top < 0 || rect.bottom > viewportHeight;
+    };
+
+    if (isScrollNeeded()) {
+      // If a scroll is need, use scrollEnd
+      targetElement.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+      });
+
+      const handleScrollEnd = () => {
+        makeItBlink(targetElement);
+        window.removeEventListener("scrollend", handleScrollEnd);
+      };
+
+      window.addEventListener("scrollend", handleScrollEnd);
+    } else {
+      // Si aucun scroll n'est nécessaire, déclencher makeItBlink immédiatement
+      makeItBlink(targetElement);
+    }
   } else {
     console.error("Incorrect index to scroll to:", hid);
   }
+};
+
+const makeItBlink = (target) => {
+  let count = 0;
+  const interval = () => {
+    if (count < 6) {
+      target.classList.toggle("hns-hidden");
+      count++;
+      setTimeout(interval, 100);
+    }
+  };
+  interval();
 };
 
 // Check if headers are highlighted

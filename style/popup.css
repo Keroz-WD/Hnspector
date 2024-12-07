@@ -341,36 +341,18 @@ input:checked+.slider:before {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--mid-grey);
+  color: var(--dark-grey);
   font-size: 11px;
 }
 
 .buymeacoffee {
   display: flex;
   align-items: center;
-  gap: 8px;
-}
-
-.buymeacoffee span {
-  width: 190px;
-  user-select: none;
+  width: 75%;
 }
 
 .buymeacoffee a {
-  display: flex;
-  align-items: center;
-}
-
-.buymeacoffee img {
-  padding: 4px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--mid-grey);
-  background-color: var(--box-bg);
-}
-
-.buymeacoffee img:hover {
-  border: 1px solid var(--ok-blue);
-  background-color: var(--ok-blue);
+  color: var(--ok-blue);
 }
 
 .signature {

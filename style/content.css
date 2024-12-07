@@ -71,3 +71,7 @@ h6.hns-header {
 .hns-show {
   visibility: visible;
 }
+
+.hns-hidden {
+  visibility: hidden;
+}
