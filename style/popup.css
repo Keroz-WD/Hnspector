@@ -348,11 +348,16 @@ input:checked+.slider:before {
 .buymeacoffee {
   display: flex;
   align-items: center;
-  width: 75%;
+  width: 70%;
 }
 
 .buymeacoffee a {
   color: var(--ok-blue);
+}
+
+.buymeacoffee a:hover {
+  color: var(--dark-grey);
+  text-decoration: none;
 }
 
 .signature {

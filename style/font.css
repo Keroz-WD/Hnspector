@@ -2,19 +2,19 @@
   font-family: Inter;
   font-style: normal;
   font-weight: 400;
-  src: url(chrome-extension://ejfiaoeiobkomkbleaeennikedehldai/fonts/Inter-Regular.ttf)
+  src: url(./fonts/Inter-Regular.ttf)
 }
 
 @font-face {
   font-family: Inter;
   font-style: normal;
   font-weight: 600;
-  src: url(chrome-extension://ejfiaoeiobkomkbleaeennikedehldai/fonts/Inter-SemiBold.ttf)
+  src: url(./fonts/Inter-SemiBold.ttf)
 }
 
 @font-face {
   font-family: Inter;
   font-style: italic;
   font-weight: 400;
-  src: url(chrome-extension://ejfiaoeiobkomkbleaeennikedehldai/fonts/Inter-Italic.ttf)
+  src: url(./fonts/Inter-Italic.ttf)
 }
