@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Hnspector - Inspect headings",
-  "version": "1.2.0",
-  "description": "Easily inspect heading structure. Highlight, copy and scroll to any H tag on a web page.",
+  "version": "1.2.1",
+  "description": "Inspect heading structure for SEO. Find, highlight and copy on any H tag on a web page.",
   "author": "kerozextensions@gmail.com",
   "icons": {
     "16": "images/icon-16.png",
