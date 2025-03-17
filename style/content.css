@@ -37,16 +37,14 @@
   background-color: var(--hns-h6) !important;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  &.hns-header {
-    color: white !important;
-    overflow: visible !important;
-  }
+h1.hns-header,
+h2.hns-header,
+h3.hns-header,
+h4.hns-header,
+h5.hns-header,
+h6.hns-header {
+  color: white !important;
+  overflow: visible !important;
 }
 
 .hns-hBox {

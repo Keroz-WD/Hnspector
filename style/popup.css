@@ -342,13 +342,13 @@ input:checked+.slider:before {
   justify-content: space-between;
   align-items: center;
   color: var(--dark-grey);
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .buymeacoffee {
   display: flex;
   align-items: center;
-  width: 70%;
+  width: 60%;
 }
 
 .buymeacoffee a {
@@ -369,6 +369,10 @@ input:checked+.slider:before {
   font-size: 13px;
   color: var(--ok-blue);
   font-weight: 600;
+}
+
+#version {
+  font-size: 11px;
 }
 
 /* Visual feedback animations */

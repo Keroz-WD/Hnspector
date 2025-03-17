@@ -1,51 +1,24 @@
 "use strict";
 
-let hnNodeList = Array.from(
-  document.querySelectorAll("h1, h2, h3, h4, h5, h6")
-).filter((element) => {
-  const style = getComputedStyle(element);
-  if (style.display === "none") return false;
-
-  const children = Array.from(element.children);
-  if (children.length === 0) return true;
-
-  return children.some((child) => {
-    const childStyle = getComputedStyle(child);
-    return childStyle.display !== "none" && child.textContent.trim() !== "";
-  });
-});
+let hnNodeList = [];
 let dataList = [];
 let hBoxArray = [];
 let hBoxInitialized = false;
 
 // Formats data to be sent to popup.js
 const createDataList = (titles) => {
-  // Init dataList strucutre
   dataList = {
     pageInfo: {
       url: document.URL,
       title: document.title || "<Page title is missing>",
     },
-    headers: [],
+    headers: titles.map((element) => ({
+      tag: element.nodeName,
+      content: hBoxInitialized
+        ? element.textContent.trim().slice(0, -2)
+        : element.textContent.trim(),
+    })),
   };
-
-  class HnData {
-    constructor(tag, content) {
-      this.tag = tag;
-      this.content = content;
-    }
-  }
-
-  titles.forEach((element) => {
-    let content = "";
-    if (hBoxInitialized) {
-      // Remove Hn indicator value injected in DOM
-      content = element.textContent.trim().slice(0, -2);
-    } else {
-      content = element.textContent.trim();
-    }
-    dataList.headers.push(new HnData(element.nodeName, content));
-  });
 };
 
 // Updates the list of titles and reacts to DOM changes
@@ -55,54 +28,41 @@ const updateHeaders = () => {
   ).filter((element) => {
     const style = getComputedStyle(element);
     if (style.display === "none") return false;
-
     const children = Array.from(element.children);
-    if (children.length === 0) return true;
-
-    return children.some((child) => {
-      const childStyle = getComputedStyle(child);
-      return childStyle.display !== "none" && child.textContent.trim() !== "";
-    });
+    return (
+      children.length === 0 ||
+      children.some((child) => {
+        const childStyle = getComputedStyle(child);
+        return childStyle.display !== "none" && child.textContent.trim() !== "";
+      })
+    );
   });
   createDataList(hnNodeList);
 };
 
 // Observer to detect DOM changes
 const observer = new MutationObserver(updateHeaders);
-
-// Observe the addition and deletion of nodes in the DOM
 observer.observe(document.body, { childList: true, subtree: true });
 
-// Mettre à jour les titres au démarrage
+// Update title on page load
 updateHeaders();
 
 // Highlight headings
 const highlightHeaders = (titles) => {
   titles.forEach((element) => {
-    // Check if H tag is not empty
     if (element.textContent === "") return;
-
-    // Change element's background
     element.classList.toggle("hns-header");
     element.classList.toggle(`hns-${element.tagName}`);
-
-    if (hBoxInitialized === false) {
-      buildHnBoxes(element);
-    }
+    if (!hBoxInitialized) buildHnBoxes(element);
   });
-
   hBoxArray.forEach((element) => element.classList.toggle("hns-show"));
-
   hBoxInitialized = true;
 };
 
 // Add header tag indicator
 const buildHnBoxes = (element) => {
   const hBox = document.createElement("div");
-
-  hBox.classList.add("hns-hBox");
-  hBox.classList.add(`hns-${element.tagName}`);
-
+  hBox.classList.add("hns-hBox", `hns-${element.tagName}`);
   hBox.textContent = element.tagName;
   element.appendChild(hBox);
   hBoxArray.push(hBox);
@@ -110,34 +70,27 @@ const buildHnBoxes = (element) => {
 
 // Scroll to element with hid value in dataset
 const ScrollTo = (hid) => {
-  if (hnNodeList[hid]) {
-    const targetElement = hnNodeList[hid];
-
-    const isScrollNeeded = () => {
-      const viewportHeight = window.innerHeight;
-      const rect = targetElement.getBoundingClientRect();
-      return rect.top < 0 || rect.bottom > viewportHeight;
-    };
-
-    if (isScrollNeeded()) {
-      // If a scroll is need, use scrollEnd
-      targetElement.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
-
-      const handleScrollEnd = () => {
-        makeItBlink(targetElement);
-        window.removeEventListener("scrollend", handleScrollEnd);
-      };
-
-      window.addEventListener("scrollend", handleScrollEnd);
-    } else {
-      // Si aucun scroll n'est nécessaire, déclencher makeItBlink immédiatement
-      makeItBlink(targetElement);
-    }
-  } else {
+  const targetElement = hnNodeList[hid];
+  if (!targetElement) {
     console.error("Incorrect index to scroll to:", hid);
+    return;
+  }
+
+  const isScrollNeeded = () => {
+    const viewportHeight = window.innerHeight;
+    const rect = targetElement.getBoundingClientRect();
+    return rect.top < 0 || rect.bottom > viewportHeight;
+  };
+
+  if (isScrollNeeded()) {
+    targetElement.scrollIntoView({ behavior: "smooth", block: "center" });
+    const handleScrollEnd = () => {
+      makeItBlink(targetElement);
+      window.removeEventListener("scrollend", handleScrollEnd);
+    };
+    window.addEventListener("scrollend", handleScrollEnd);
+  } else {
+    makeItBlink(targetElement);
   }
 };
 
@@ -154,16 +107,14 @@ const makeItBlink = (target) => {
 };
 
 // Check if headers are highlighted
-const isHighlighted = () => {
-  const highlighted =
-    hnNodeList.length > 0 && hnNodeList[0].classList.contains("hns-header");
-  return { highlight: highlighted };
-};
+const isHighlighted = () => ({
+  highlight:
+    hnNodeList.length > 0 && hnNodeList[0].classList.contains("hns-header"),
+});
 
 // Listen requests sent by popup.js
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   createDataList(hnNodeList);
-
   switch (message.request) {
     case "getData":
       sendResponse(dataList);
@@ -180,5 +131,5 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     default:
       console.warn("Unknown request received:", message.request);
   }
-  return true; // ¯\_(ツ)_/¯
+  return true;
 });
