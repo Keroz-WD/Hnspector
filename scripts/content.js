@@ -2,7 +2,18 @@
 
 let hnNodeList = Array.from(
   document.querySelectorAll("h1, h2, h3, h4, h5, h6")
-);
+).filter((element) => {
+  const style = getComputedStyle(element);
+  if (style.display === "none") return false;
+
+  const children = Array.from(element.children);
+  if (children.length === 0) return true;
+
+  return children.some((child) => {
+    const childStyle = getComputedStyle(child);
+    return childStyle.display !== "none" && child.textContent.trim() !== "";
+  });
+});
 let dataList = [];
 let hBoxArray = [];
 let hBoxInitialized = false;
@@ -39,7 +50,20 @@ const createDataList = (titles) => {
 
 // Updates the list of titles and reacts to DOM changes
 const updateHeaders = () => {
-  hnNodeList = Array.from(document.querySelectorAll("h1, h2, h3, h4, h5, h6"));
+  hnNodeList = Array.from(
+    document.querySelectorAll("h1, h2, h3, h4, h5, h6")
+  ).filter((element) => {
+    const style = getComputedStyle(element);
+    if (style.display === "none") return false;
+
+    const children = Array.from(element.children);
+    if (children.length === 0) return true;
+
+    return children.some((child) => {
+      const childStyle = getComputedStyle(child);
+      return childStyle.display !== "none" && child.textContent.trim() !== "";
+    });
+  });
   createDataList(hnNodeList);
 };
 
