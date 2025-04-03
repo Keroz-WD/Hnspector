@@ -28,14 +28,16 @@ const updateHeaders = () => {
   ).filter((element) => {
     const style = getComputedStyle(element);
     if (style.display === "none") return false;
-    const children = Array.from(element.children);
-    return (
-      children.length === 0 ||
-      children.some((child) => {
+
+    // Check if element or its children have visible content
+    const hasVisibleContent =
+      element.textContent.trim() !== "" &&
+      Array.from(element.children).every((child) => {
         const childStyle = getComputedStyle(child);
-        return childStyle.display !== "none" && child.textContent.trim() !== "";
-      })
-    );
+        return childStyle.display !== "none" || child.textContent.trim() !== "";
+      });
+
+    return hasVisibleContent;
   });
   createDataList(hnNodeList);
 };

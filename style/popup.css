@@ -5,7 +5,7 @@
   --ok-light-blue: #52aef0;
   --dark-grey: #191919;
   --mid-grey: #676767;
-  --light-grey: #D2D2D2;
+  --light-grey: #a5a5a5;
   --warning: #DF4B1C;
   --h1: #373038;
   --h2: #DF8600;
@@ -124,7 +124,6 @@ h2 {
 
 .empty-tag {
   color: var(--light-grey);
-  font-style: italic;
   user-select: none;
 }
 
