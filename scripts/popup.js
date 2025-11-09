@@ -71,10 +71,15 @@ const initHighlightToggle = (isActive) => (highlightToggle.checked = isActive);
 // Display page title
 const displayPageInfo = (pageInfo) => {
   const pageTitle = document.getElementById("pageTitle");
+  const pageMetaDesc = document.getElementById("metaDecription");
   if (pageInfo.title === "<Page title is missing>") {
     pageTitle.classList.add("title-warning");
   }
   pageTitle.textContent = pageInfo.title;
+  if (pageInfo.metaDesc === "<No description available>") {
+    pageMetaDesc.classList.add("title-warning");
+  }
+  pageMetaDesc.textContent = pageInfo.metaDesc;
 };
 
 // Display headers list in order of apparence in page html

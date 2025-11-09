@@ -11,6 +11,10 @@ const createDataList = (titles) => {
     pageInfo: {
       url: document.URL,
       title: document.title || "<Page title is missing>",
+      metaDesc:
+        document.querySelector('meta[name="description"]')?.content ||
+        document.querySelector('meta[property="og:description"]')?.content ||
+        "<No description available>",
     },
     headers: titles.map((element) => ({
       tag: element.nodeName,
